@@ -44,5 +44,11 @@
   <div id="content">
     {% block content %}{% endblock %}
   </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        {% block domready %}
+    });
+</script>
 </body>
 </html>
