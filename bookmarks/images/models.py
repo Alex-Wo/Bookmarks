@@ -12,13 +12,13 @@ class Image(models.Model):
     url = models.URLField()
     image = models.ImageField(upload_to='images/%Y/%m/%d/')
     description = models.TextField(blank=True)
-    created = models.DateField(auto_now_add=True)
+    created = models.DateField(auto_now_add=True, db_index=True)
     users_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='images_liked', blank=True)
 
     def __str__(self):
         return self.title
 
-    def safe(self, *args, **kwargs):
+    def save(self, *args, **kwargs):
         """ Переопределяем метод save(), для автоматического формирования слага основанного на заголовке title. """
         if not self.slug:
             self.slug = slugify(self.title)

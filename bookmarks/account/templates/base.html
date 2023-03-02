@@ -46,10 +46,11 @@
   </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="http://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+<!--  Перечисляем методы, для которых в заголовках не будет подставляться токен-->
   <script>
     var csrftoken = Cookies.get('csrftoken');
     functioncsrfSafeMethod(method) {
-        Перечисляем методы, для которых в заголовках НЕ будет подставляться токен
         return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
     }
     $.ajaxSetup({
