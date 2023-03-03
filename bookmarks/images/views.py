@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404
 from .models import Image
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
+# from common.decorators import ajax_required
 
 
 def image_detail(request, id, slug):
@@ -36,8 +37,9 @@ def image_create(request):
         return render(request, 'images/image/create.html', {'section': 'images', 'form': form})
 
 
-@login_required           # Закрывает доступ к обработчику для неавторизованных юзеров
-@require_POST             # Возвращает ошибку 405, если запрос отправлен НЕ методом POST
+# @ajax_required
+@login_required  # Закрывает доступ к обработчику для неавторизованных юзеров
+@require_POST  # Возвращает ошибку 405, если запрос отправлен НЕ методом POST
 def image_like(request):
     """ Обработчик действий like/unlike """
     image_id = request.POST.get('id')
@@ -50,6 +52,6 @@ def image_like(request):
             else:
                 image.users_like.remove(request.user)
             return JsonResponse({'status': 'ok'})
-        except:
+        finally:
             pass
     return JsonResponse({'status': 'ok'})
