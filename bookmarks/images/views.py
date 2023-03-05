@@ -77,5 +77,5 @@ def image_list(request):
         # Если номер страницы больше, чем их количество, тогда возвращаем последнюю
         images = paginator.page(paginator.num_pages)
     if request.is_ajax():
-        return render(request, 'images/image/list.ajax.html', {'section': 'images', 'images': images})
+        return render(request, 'images/image/list_ajax.html', {'section': 'images', 'images': images})
     return render(request, 'images/image/list.html', {'section': 'images', 'images': images})
